@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<note name="a-note">
+    <to>manish</to>
+    <from>starscream</from>
+    <message>Hello, what's up?</message>
+    <!-- <![CDATA[<ignore>ignore these : <, >, &, ', ".</ignore>]] > -->
+</note>
+
+
+<!-- DTD -->
+<!-- Internal DTD -->
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE customer[
+    <!ELEMENT customer(name,email,address)>
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT email (#PCDATA)>
+    <!ELEMENT address (#PCDATA)>
+]>
+
+<customer>
+    <name>starscream</name>
+    <email>starscream@gmail.com</email>
+    <address>hetauda</address>
+</customer>
+
+
+<!-- External DTD -->
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE customer SYSTEM "customer.dtd">
+<customer>
+    <name>starscream</name>
+    <email>starscream@gmail.com</email>
+    <address>hetauda</address>
+</customer>
+
+
+<!-- inside customer.dtd -->
+<!ELEMENT customer (name,email,address) >
+<!ELEMENT name (#PCDATA) >
+<!ELEMENT email (#PCDATA) >
+<!ELEMENT address (#PCDATA) >
+

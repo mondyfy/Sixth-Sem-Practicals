@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Save Data</title>
+</head>
+<body>
+    <!-- don't forget action and method attribute -->
+    <!-- action means where you want to dump the submitted files, and process them. in this case we want to dump
+    the data to the handlesave.php file and process there -->
+    <!-- a POST request is used to dump the files. other methods include GET, PUT, PATCH, DELETE. in this case, we want POST -->
+    <form action="./handlesave.php" method="POST" id="signupForm">
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+            
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <!-- including the image here for file handling -->
+        <div>
+            <label for="image">Image</label>
+            <!-- the name attribute is compulsory here -->
+            <input type="file" name="image" id="image">
+        </div>
+        <div>
+            <!-- the name attribute is necessary because we use it in the handlesave.php file -->
+            <input type="submit" value="Signup" name="signup">
+        </div>
+    </form>
+
+    <script>
+
+        // variables to hold form, username and password field.
+        let signupForm=document.getElementById('signupForm');
+        let username=document.getElementById('username');
+        let password=document.getElementById('password');
+
+
+        signupForm.addEventListener('submit',(e)=>{
+            
+            // prevent the default behavior of the form
+            // i.e. the form submits itself but we want to prevent that.
+            // we want to validate the form on the client side before sending to the server;
+            // ()=>{} is an ES6 syntax. you can replace it with function(e){}
+            // console.log(e) to see what other methods and properties there are on e. but for now, we are only interested in 
+            // preventDefault();
+            e.preventDefault();
+
+            // if the username and password fields are empty, alert the user and return;
+            // dont forget to put the return statement. IMPORTANT
+
+            // don't really need to check for emptiness if you have already put 'required' attribute on the input field above.
+            // but whatever, 
+            if(username.value==='' || password.value===''){
+                return alert('Please fill all fields!');
+            }else if(password.value.length<8){
+                // if the password length is less than 8, alert
+                return alert('password must be at least 8 characters long');
+            }else if(username.value.length<6){
+                // if the username  is less than 8, alert
+                // probably not necessary for username but whatever.
+                return alert('username must be at least 6 characters long');
+            }
+            else{
+                // everything is set. submit the form manually using the .submit() method on the signupForm variable.
+                signupForm.submit();
+            }
+
+        })
+
+    </script>
+</body>
+</html>

@@ -436,18 +436,16 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "number_of_characters.l"
-/*** Definition Section has one variable 
-which can be accessed inside yylex() 
-and main() ***/
-#line 5 "number_of_characters.l"
-int count = 0; 
-#line 446 "lex.yy.c"
-/*** Rule Section has three rules, first rule 
-matches with capital letters, second rule 
-matches with any character except newline and 
-third rule does not take input after the enter***/
-#line 451 "lex.yy.c"
+#line 1 "capitalLetters.l"
+/* Definition Section
+This count variable can be accessed inside yylex() i.e. User code section */
+#line 4 "capitalLetters.l"
+int count = 0;
+#line 445 "lex.yy.c"
+/*
+Rules Section
+ */
+#line 449 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -664,9 +662,9 @@ YY_DECL
 		}
 
 	{
-#line 12 "number_of_characters.l"
+#line 10 "capitalLetters.l"
 
-#line 670 "lex.yy.c"
+#line 668 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -725,27 +723,34 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 13 "number_of_characters.l"
-{printf("%s capital letter\n", yytext); 
-	count++;} 
+#line 11 "capitalLetters.l"
+{
+       printf("%s capital letter\n", yytext); /* matches with capital letters */
+       count++;
+     }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 15 "number_of_characters.l"
-{printf("%s not a capital letter\n", yytext);} 
+#line 15 "capitalLetters.l"
+{
+        printf("%s not a capital letter\n", yytext); /* matches with any character except newline */
+      }
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 16 "number_of_characters.l"
-{return 0;} 
+#line 18 "capitalLetters.l"
+{
+        return 0; /* does not take input after the enter*/
+      }
 	YY_BREAK
+/* yytext is the text in the buffer  */
 case 4:
 YY_RULE_SETUP
-#line 17 "number_of_characters.l"
+#line 22 "capitalLetters.l"
 ECHO;
 	YY_BREAK
-#line 749 "lex.yy.c"
+#line 754 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1750,35 +1755,15 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 17 "number_of_characters.l"
+#line 22 "capitalLetters.l"
 
 
-/*** Code Section prints the number of 
-capital letter present in the given input***/
-int yywrap(){} 
-int main(){ 
-
-// Explanation: 
-// yywrap() - wraps the above rule section 
-/* yyin - takes the file pointer 
-		which contains the input*/
-/* yylex() - this is the main flex function 
-		which runs the Rule Section*/
-// yytext is the text in the buffer 
-
-// Uncomment the lines below 
-// to take input from file 
-// FILE *fp; 
-// char filename[50]; 
-// printf("Enter the filename: \n"); 
-// scanf("%s",filename); 
-// fp = fopen(filename,"r"); 
-// yyin = fp; 
-
-yylex(); 
-printf("\nNumber of Captial letters "
-	"in the given input - %d\n", count); 
-
-return 0; 
-} 
+/*Code section*/
+int yywrap(){} /* wraps the rule section */
+int main(){
+            printf("Please enter a string:");
+            yylex();  /* main flex function which runs the Rule Section*/
+            printf("\n Number of Captial letters in the given input - %d\n", count);
+            return 0;
+          }
 
